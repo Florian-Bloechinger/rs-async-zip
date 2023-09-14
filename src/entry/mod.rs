@@ -176,6 +176,11 @@ impl StoredZipEntry {
         self.file_offset
     }
 
+    /// Returns a reference to the inner ZIP entry.
+    pub fn entry(&self)->  ZipEntry{
+        self.entry.clone()
+    }
+
     /// Seek to the offset in bytes where the data of the entry starts.
     pub(crate) async fn seek_to_data_offset<R: AsyncRead + AsyncSeek + Unpin>(&self, mut reader: &mut R) -> Result<()> {
         // Seek to the header
